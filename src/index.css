@@ -5,60 +5,63 @@
 /* CSS Variables - MD3 Tokens */
 :root {
   /* =================================================================
-     LIGHT MODE (Lavender Mist) - DEFAULT
+     LIGHT MODE (Ice Blue) - COOL & INTELLECTUAL
      ================================================================= */
-  --md-sys-color-background: #FFFBFE;
-  /* Lavender Mist */
-  --md-sys-color-on-background: #1C1B1F;
-  /* Dark Grey */
+  --md-sys-color-background: #F0F9FF;
+  /* Ice Blue (Sky 50) */
+  --md-sys-color-on-background: #0C4A6E;
+  /* Dark Navy (Sky 900) */
 
-  --md-sys-color-surface: #FFFBFE;
-  --md-sys-color-surface-container: #F3EDF7;
-  /* Pale Lavender (Card BG) */
-  --md-sys-color-surface-container-high: #ECE6F0;
-  --md-sys-color-surface-container-highest: #E6E0E9;
+  --md-sys-color-surface: #F0F9FF;
+  --md-sys-color-surface-container: #E0F2FE;
+  /* Sky 100 (Card BG) */
+  --md-sys-color-surface-container-high: #BAE6FD;
+  --md-sys-color-surface-container-highest: #7DD3FC;
 
-  --md-sys-color-primary: #6750A4;
-  /* Deep Purple */
+  --md-sys-color-primary: #0284C7;
+  /* Sky 600 */
   --md-sys-color-on-primary: #FFFFFF;
-  --md-sys-color-primary-container: #EADDFF;
-  --md-sys-color-on-primary-container: #21005D;
+  --md-sys-color-primary-container: #D1E9FF;
+  --md-sys-color-on-primary-container: #001E30;
 
-  --md-sys-color-secondary: #625B71;
+  --md-sys-color-secondary: #64748B;
+  /* Slate 500 */
   --md-sys-color-on-secondary: #FFFFFF;
-  --md-sys-color-secondary-container: #E8DEF8;
-  --md-sys-color-on-secondary-container: #1D192B;
+  --md-sys-color-secondary-container: #E2E8F0;
+  --md-sys-color-on-secondary-container: #1E293B;
 
-  --md-sys-color-tertiary: #7D5260;
+  --md-sys-color-tertiary: #0F766E;
+  /* Teal */
   --md-sys-color-on-tertiary: #FFFFFF;
-  --md-sys-color-tertiary-container: #FFD8E4;
-  --md-sys-color-on-tertiary-container: #31111D;
+  --md-sys-color-tertiary-container: #CCFBF1;
+  --md-sys-color-on-tertiary-container: #115E59;
 
-  --md-sys-color-error: #B3261E;
+  --md-sys-color-error: #BA1A1A;
   --md-sys-color-on-error: #FFFFFF;
 
-  --md-sys-color-outline: #79747E;
-  --md-sys-color-outline-variant: #CAC4D0;
+  --md-sys-color-outline: #94A3B8;
+  --md-sys-color-outline-variant: #CBD5E1;
 
-  /* Custom MBTI Colors (Vibrant for Light Mode) */
-  --color-analysts: #6750A4;
-  --color-diplomats: #006C4C;
-  --color-sentinels: #00639B;
-  --color-explorers: #9A25AE;
+  /* Custom MBTI Colors (Vibrant/Cool for Light Mode) */
+  --color-analysts: #8B5CF6;
+  /* Purple */
+  --color-diplomats: #10B981;
+  /* Emerald */
+  --color-sentinels: #0EA5E9;
+  /* Sky Blue */
+  --color-explorers: #F59E0B;
+  /* Amber */
 
   /* Compatibility Scale */
-  --compatibility-5: #006C4C;
-  /* Green */
-  --compatibility-4: #48E783;
-  --compatibility-3: #ECE6F0;
-  /* Blend in */
-  --compatibility-2: #F2B8B5;
-  --compatibility-1: #B3261E;
-  /* Red */
+  --compatibility-5: #10B981;
+  --compatibility-4: #34D399;
+  --compatibility-3: #CBD5E1;
+  --compatibility-2: #FCA5A5;
+  --compatibility-1: #EF4444;
 
-  /* Gradient Overlay for Light Mode */
-  --bg-gradient: radial-gradient(circle at 0% 0%, rgba(103, 80, 164, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(103, 80, 164, 0.03) 0%, transparent 50%);
+  /* Gradient Overlay for Ice Blue */
+  --bg-gradient: radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 0% 100%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
 
   /* Common Tokens */
   --md-sys-shape-corner-small: 8px;
