@@ -4,9 +4,90 @@
 
 /* CSS Variables - MD3 Tokens */
 :root {
-  /* MD3 Color Palette (Dark Theme - Adjusted for Visibility) */
+  /* =================================================================
+     LIGHT MODE (Lavender Mist) - DEFAULT
+     ================================================================= */
+  --md-sys-color-background: #FFFBFE;
+  /* Lavender Mist */
+  --md-sys-color-on-background: #1C1B1F;
+  /* Dark Grey */
+
+  --md-sys-color-surface: #FFFBFE;
+  --md-sys-color-surface-container: #F3EDF7;
+  /* Pale Lavender (Card BG) */
+  --md-sys-color-surface-container-high: #ECE6F0;
+  --md-sys-color-surface-container-highest: #E6E0E9;
+
+  --md-sys-color-primary: #6750A4;
+  /* Deep Purple */
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #EADDFF;
+  --md-sys-color-on-primary-container: #21005D;
+
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #E8DEF8;
+  --md-sys-color-on-secondary-container: #1D192B;
+
+  --md-sys-color-tertiary: #7D5260;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #FFD8E4;
+  --md-sys-color-on-tertiary-container: #31111D;
+
+  --md-sys-color-error: #B3261E;
+  --md-sys-color-on-error: #FFFFFF;
+
+  --md-sys-color-outline: #79747E;
+  --md-sys-color-outline-variant: #CAC4D0;
+
+  /* Custom MBTI Colors (Vibrant for Light Mode) */
+  --color-analysts: #6750A4;
+  --color-diplomats: #006C4C;
+  --color-sentinels: #00639B;
+  --color-explorers: #9A25AE;
+
+  /* Compatibility Scale */
+  --compatibility-5: #006C4C;
+  /* Green */
+  --compatibility-4: #48E783;
+  --compatibility-3: #ECE6F0;
+  /* Blend in */
+  --compatibility-2: #F2B8B5;
+  --compatibility-1: #B3261E;
+  /* Red */
+
+  /* Gradient Overlay for Light Mode */
+  --bg-gradient: radial-gradient(circle at 0% 0%, rgba(103, 80, 164, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(103, 80, 164, 0.03) 0%, transparent 50%);
+
+  /* Common Tokens */
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 24px;
+  --md-sys-shape-corner-xl: 32px;
+  --md-sys-shape-corner-full: 9999px;
+
+  --font-family: 'Roboto', 'Noto Sans JP', system-ui, sans-serif;
+  --font-size-body: 1rem;
+  --font-size-label: 0.875rem;
+  --font-size-headline: 1.5rem;
+  --font-size-display: 2.5rem;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  --md-sys-motion-duration-short: 200ms cubic-bezier(0.2, 0.0, 0, 1.0);
+  --md-sys-motion-duration-medium: 400ms cubic-bezier(0.2, 0.0, 0, 1.0);
+}
+
+/* =================================================================
+   DARK MODE (Material You)
+   ================================================================= */
+[data-theme="dark"] {
   --md-sys-color-background: #1D1B20;
-  /* Slightly lighter than #141218 */
   --md-sys-color-on-background: #E6E1E5;
 
   --md-sys-color-surface: #1D1B20;
@@ -35,15 +116,11 @@
   --md-sys-color-outline: #938F99;
   --md-sys-color-outline-variant: #49454F;
 
-  /* Custom MBTI Colors (Pastel) */
+  /* Custom MBTI Colors (Pastel for Dark Mode) */
   --color-analysts: #D0BCFF;
-  /* Primary Purple */
   --color-diplomats: #A5F2C8;
-  /* Mint */
   --color-sentinels: #A8C7FA;
-  /* Light Blue */
   --color-explorers: #FFD8E4;
-  /* Pinkish */
 
   /* Compatibility Scale */
   --compatibility-5: #A5F2C8;
@@ -52,30 +129,9 @@
   --compatibility-2: #FFD8E4;
   --compatibility-1: #F2B8B5;
 
-  /* Shape */
-  --md-sys-shape-corner-small: 8px;
-  --md-sys-shape-corner-medium: 12px;
-  --md-sys-shape-corner-large: 24px;
-  --md-sys-shape-corner-xl: 32px;
-  --md-sys-shape-corner-full: 9999px;
-
-  /* Typography */
-  --font-family: 'Roboto', 'Noto Sans JP', system-ui, sans-serif;
-  --font-size-body: 1rem;
-  --font-size-label: 0.875rem;
-  --font-size-headline: 1.5rem;
-  --font-size-display: 2.5rem;
-
-  /* Spacing */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-
-  /* Transition */
-  --md-sys-motion-duration-short: 200ms cubic-bezier(0.2, 0.0, 0, 1.0);
-  --md-sys-motion-duration-medium: 400ms cubic-bezier(0.2, 0.0, 0, 1.0);
+  /* Gradient Overlay for Dark Mode */
+  --bg-gradient: radial-gradient(circle at 0% 0%, rgba(208, 188, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(208, 188, 255, 0.05) 0%, transparent 50%);
 }
 
 /* Reset & Base */
@@ -90,13 +146,12 @@
 body {
   font-family: var(--font-family);
   background: var(--md-sys-color-background);
-  /* Add subtle gradient to distinguish from plain black */
-  background-image: radial-gradient(circle at 0% 0%, rgba(208, 188, 255, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(208, 188, 255, 0.05) 0%, transparent 50%);
+  background-image: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--md-sys-color-on-background);
   line-height: 1.5;
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
@@ -147,17 +202,18 @@ body {
   padding: var(--space-lg);
   border: none;
   box-shadow: none;
-  /* MD3 prefers surface colors over shadows in dark mode */
   transition: background-color var(--md-sys-motion-duration-short);
 }
 
 .glass-card:hover {
-  background: var(--md-sys-color-surface-container-high);
+  background: var(--md-sys-color-surface-container-highest);
+  /* Use highest for hover */
 }
 
 /* Header (Top App Bar) */
 .header {
   background: var(--md-sys-color-surface);
+  /* Might need adjustment for Light mode if too bright */
   padding: var(--space-md) var(--space-lg);
   position: sticky;
   top: 0;
@@ -165,6 +221,24 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  /* Add border for definition */
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface-variant);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  padding: 8px 16px;
+  border-radius: var(--md-sys-shape-corner-full);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--md-sys-color-surface-container-highest);
 }
 
 .header-content {
@@ -218,14 +292,14 @@ body {
 .diagnose-btn {
   background: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover,
 .diagnose-btn:hover:not(:disabled) {
-  background: #E0D4FC;
-  /* Lighter primary */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  /* Only apply lighten effect if necessary, or use specific hover color */
+  filter: brightness(1.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
 }
 
@@ -235,13 +309,14 @@ body {
 }
 
 .btn-secondary:hover {
-  background: #5D566B;
-  /* Slightly lighter */
+  filter: brightness(0.95);
+  /* Darken slightly on light mode, works okay for dark too */
 }
 
 .btn:disabled {
-  background: rgba(230, 225, 229, 0.12);
-  color: rgba(230, 225, 229, 0.38);
+  background: var(--md-sys-color-surface-container-highest);
+  opacity: 0.4;
+  color: var(--md-sys-color-on-surface);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
@@ -249,7 +324,7 @@ body {
 
 .btn-delete {
   background: transparent;
-  color: var(--md-sys-color-on-surface-variant);
+  color: var(--md-sys-color-outline);
   width: 40px;
   height: 40px;
   border-radius: var(--md-sys-shape-corner-full);
@@ -274,7 +349,8 @@ body {
 .form-label {
   display: block;
   font-size: var(--font-size-label);
-  color: var(--md-sys-color-secondary);
+  color: var(--md-sys-color-on-surface-variant);
+  /* Update for contrast */
   margin-bottom: var(--space-xs);
   margin-left: var(--space-sm);
 }
@@ -286,7 +362,7 @@ body {
   background: var(--md-sys-color-surface-container-highest);
   border: none;
   border-bottom: 2px solid var(--md-sys-color-outline);
-  border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0;
+  border-radius: var(--md-sys-shape-corner-small) var(--md-sys-shape-corner-small) 0 0;
   color: var(--md-sys-color-on-background);
   font-size: var(--font-size-body);
   transition: border-color var(--md-sys-motion-duration-short);
@@ -296,7 +372,7 @@ body {
 .form-select:focus {
   outline: none;
   border-bottom-color: var(--md-sys-color-primary);
-  background: #423F46;
+  background: var(--md-sys-color-surface-container-high);
 }
 
 /* Typography */
@@ -322,7 +398,6 @@ body {
   align-items: center;
   gap: var(--space-md);
   padding: 8px 16px;
-  /* MD3 List Item Style */
   background: transparent;
   border-radius: var(--md-sys-shape-corner-full);
   transition: background var(--md-sys-motion-duration-short);
@@ -371,7 +446,8 @@ body {
   min-height: 600px;
   border-radius: var(--md-sys-shape-corner-large);
   overflow: hidden;
-  background: var(--md-sys-color-surface-container);
+  background: var(--md-sys-color-surface-container-high);
+  /* Distinct from card bg */
   position: relative;
   border: 1px solid var(--md-sys-color-outline-variant);
 }
@@ -379,14 +455,16 @@ body {
 /* SVG Styles */
 .member-node rect {
   rx: 16px;
-  /* Rounded corners for nodes */
-  stroke: var(--md-sys-color-outline-variant);
+  stroke: var(--md-sys-color-outline);
   stroke-width: 2px;
+  fill: var(--md-sys-color-surface-container-highest);
+  /* Node fill */
 }
 
 .member-node text {
   font-family: var(--font-family);
   font-weight: 500;
+  fill: var(--md-sys-color-on-surface);
 }
 
 /* Pair Compatibility */
