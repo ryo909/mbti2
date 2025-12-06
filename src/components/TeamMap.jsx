@@ -3,6 +3,9 @@ import {
     ReactFlow,
     Controls,
     Background,
+    useNodesState,
+    useEdgesState,
+    MarkerType,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { getGroupForType, getCompatibility, MBTI_DESCRIPTIONS } from '../data/mbtiCompatibility';
@@ -72,10 +75,12 @@ function generateEdges(members) {
                 id: `${members[i].id}-${members[j].id}`,
                 source: members[i].id,
                 target: members[j].id,
+                type: 'default',
+                animated: false,
                 style: {
                     stroke: getEdgeColor(score),
-                    strokeWidth: score,
-                    opacity: 0.6
+                    strokeWidth: Math.max(2, score),
+                    opacity: 0.7
                 },
                 data: { score, member1: members[i], member2: members[j] }
             });
@@ -85,14 +90,16 @@ function generateEdges(members) {
 }
 
 export default function TeamMap({ members, onSelectPair }) {
-    const [nodes, setNodes] = useState([]);
-    const [edges, setEdges] = useState([]);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
     // Update nodes and edges when members change
     useEffect(() => {
-        setNodes(generateNodes(members));
-        setEdges(generateEdges(members));
-    }, [members]);
+        const newNodes = generateNodes(members);
+        const newEdges = generateEdges(members);
+        setNodes(newNodes);
+        setEdges(newEdges);
+    }, [members, setNodes, setEdges]);
 
     const onEdgeClick = useCallback((event, edge) => {
         if (edge.data) {
@@ -142,8 +149,14 @@ export default function TeamMap({ members, onSelectPair }) {
                 <ReactFlow
                     nodes={nodes}
                     edges={edges}
+                    onNodesChange={onNodesChange}
+                    onEdgesChange={onEdgesChange}
                     onEdgeClick={onEdgeClick}
                     nodeTypes={nodeTypes}
+                    defaultEdgeOptions={{
+                        type: 'default',
+                        style: { strokeWidth: 2 }
+                    }}
                     fitView
                     fitViewOptions={{ padding: 0.3 }}
                     proOptions={{ hideAttribution: true }}
