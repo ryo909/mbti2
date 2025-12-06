@@ -62,38 +62,6 @@ function App() {
         setSelectedPair({ member1, member2 });
     };
 
-    // Export data
-    const handleExport = () => {
-        const data = JSON.stringify(members, null, 2);
-        const blob = new Blob([data], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'mbti-team-data.json';
-        a.click();
-        URL.revokeObjectURL(url);
-    };
-
-    // Import data
-    const handleImport = (e) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = (event) => {
-            try {
-                const data = JSON.parse(event.target?.result);
-                if (Array.isArray(data)) {
-                    setMembers(data);
-                }
-            } catch (err) {
-                alert('ファイルの読み込みに失敗しました');
-            }
-        };
-        reader.readAsText(file);
-        e.target.value = '';
-    };
-
     return (
         <div className="app-container">
             <Header darkMode={darkMode} onToggleDarkMode={() => setDarkMode(!darkMode)} />
@@ -108,24 +76,6 @@ function App() {
                             onSelectMember={setSelectedMember}
                             onDeleteMember={handleDeleteMember}
                         />
-                    </div>
-
-                    <div className="glass-card" style={{ marginTop: 'var(--space-lg)' }}>
-                        <h2 className="section-title">💾 データ管理</h2>
-                        <div className="data-actions" style={{ marginTop: 0, paddingTop: 0, borderTop: 'none' }}>
-                            <button className="btn btn-secondary" onClick={handleExport} disabled={members.length === 0}>
-                                📤 エクスポート
-                            </button>
-                            <label className="btn btn-secondary" style={{ cursor: 'pointer' }}>
-                                📥 インポート
-                                <input
-                                    type="file"
-                                    accept=".json"
-                                    onChange={handleImport}
-                                    style={{ display: 'none' }}
-                                />
-                            </label>
-                        </div>
                     </div>
                 </aside>
 
