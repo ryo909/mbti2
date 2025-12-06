@@ -107,3 +107,143 @@ export function getScoreLabel(score) {
     };
     return labels[score] || '普通';
 }
+
+// Convert 1-5 scale to 0-100 scale
+export function getScore100(type1, type2) {
+    const score = getCompatibility(type1, type2);
+    // Map: 1->20, 2->40, 3->60, 4->80, 5->100
+    return score * 20;
+}
+
+// Get score label for 0-100 scale
+export function getScoreLabel100(score) {
+    if (score >= 90) return { label: 'ベストマッチ', class: 'best-match', emoji: '⭐' };
+    if (score >= 75) return { label: '良好', class: 'good', emoji: '👍' };
+    if (score >= 55) return { label: '普通', class: 'normal', emoji: '😊' };
+    if (score >= 35) return { label: '要注意', class: 'caution', emoji: '⚠️' };
+    return { label: 'カオスコンビ', class: 'chaos', emoji: '🔥' };
+}
+
+// Get score color for progress bar
+export function getScoreColor(score) {
+    if (score >= 90) return '#10b981';
+    if (score >= 75) return '#34d399';
+    if (score >= 55) return '#fbbf24';
+    if (score >= 35) return '#f97316';
+    return '#ef4444';
+}
+
+// Detailed compatibility data for pair analysis
+const PAIR_DETAILS = {
+    // Default templates based on score
+    templates: {
+        5: {
+            summary: 'このペアは理想的な補完関係にあり、お互いの強みを最大限に活かせます。',
+            good: [
+                '自然なコミュニケーションが取れる',
+                'お互いの考え方を直感的に理解できる',
+                '協力することで1+1=3以上の成果を生み出せる'
+            ],
+            caution: [
+                '相性が良すぎて馴れ合いになる可能性',
+                '外部の意見を取り入れることを忘れずに'
+            ],
+            tips: [
+                'お互いの強みを活かした役割分担を明確に',
+                '定期的に成果を振り返り、改善点を共有する'
+            ]
+        },
+        4: {
+            summary: '良好な関係を築きやすいペアです。多少の違いがあっても、それがチームの多様性につながります。',
+            good: [
+                '基本的な価値観が共通している',
+                '建設的な議論ができる',
+                'お互いから学べることが多い'
+            ],
+            caution: [
+                'アプローチの違いで意見が分かれることがある',
+                '相手の視点を理解する努力が必要'
+            ],
+            tips: [
+                '定期的に1on1でコミュニケーションを取る',
+                '違いを強みとして捉えるマインドを持つ'
+            ]
+        },
+        3: {
+            summary: 'バランスの取れた関係です。意識的なコミュニケーションを心がけることで、良好な協力関係を築けます。',
+            good: [
+                '異なる視点をチームにもたらせる',
+                '中立的な立場で協力できる',
+                '大きな衝突は起きにくい'
+            ],
+            caution: [
+                'お互いの考え方の違いを理解する必要がある',
+                '暗黙の了解が通じにくい場合がある'
+            ],
+            tips: [
+                '明確なコミュニケーションを心がける',
+                '期待値を事前にすり合わせる',
+                '相手の良い点を積極的に見つける'
+            ]
+        },
+        2: {
+            summary: '挑戦的な組み合わせですが、違いを乗り越えることで大きな成長が期待できます。',
+            good: [
+                '全く異なる視点をチームに提供できる',
+                '盲点を補い合える可能性がある',
+                '成長の機会が多い'
+            ],
+            caution: [
+                'コミュニケーションに齟齬が生じやすい',
+                '価値観の違いで衝突する可能性',
+                '相手の行動が理解しづらい場合がある'
+            ],
+            tips: [
+                '相手の行動の意図を確認する習慣をつける',
+                '共通の目標を明確に設定する',
+                '第三者のファシリテーションを活用する'
+            ]
+        },
+        1: {
+            summary: '正反対の特性を持つペアです。相互理解には努力が必要ですが、チーム全体のバランスを取る重要な役割を果たせます。',
+            good: [
+                'チームに必要な多様性を提供',
+                'お互いの盲点を完全にカバーできる',
+                '成功すれば非常に強力なペアになる'
+            ],
+            caution: [
+                '根本的な価値観の違いがある',
+                '誤解が生じやすい',
+                'ストレスが溜まりやすい関係'
+            ],
+            tips: [
+                '共通点を意識的に見つける努力をする',
+                '短い会議を頻繁に行い、認識を合わせる',
+                'お互いの専門領域を尊重する',
+                '衝突した時は一度冷却期間を置く'
+            ]
+        }
+    }
+};
+
+// Get detailed compatibility analysis for a pair
+export function getDetailedCompatibility(type1, type2) {
+    const score = getCompatibility(type1, type2);
+    const score100 = getScore100(type1, type2);
+    const labelInfo = getScoreLabel100(score100);
+    const template = PAIR_DETAILS.templates[score];
+    const desc1 = MBTI_DESCRIPTIONS[type1];
+    const desc2 = MBTI_DESCRIPTIONS[type2];
+
+    return {
+        score: score100,
+        label: labelInfo.label,
+        labelClass: labelInfo.class,
+        emoji: labelInfo.emoji,
+        color: getScoreColor(score100),
+        summary: `${desc1.name}と${desc2.name}：${template.summary}`,
+        good: template.good,
+        caution: template.caution,
+        tips: template.tips
+    };
+}

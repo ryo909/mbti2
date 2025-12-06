@@ -5,6 +5,7 @@ import MemberList from './components/MemberList';
 import TeamMap from './components/TeamMap';
 import CompatibilityDetail from './components/CompatibilityDetail';
 import TeamAnalysis from './components/TeamAnalysis';
+import PairCompatibility from './components/PairCompatibility';
 
 // LocalStorage key
 const STORAGE_KEY = 'mbti-team-members';
@@ -133,7 +134,10 @@ function App() {
                 </section>
 
                 <aside>
-                    <TeamAnalysis members={members} />
+                    <PairCompatibility members={members} />
+                    <div style={{ marginTop: 'var(--space-lg)' }}>
+                        <TeamAnalysis members={members} />
+                    </div>
                 </aside>
             </main>
 
